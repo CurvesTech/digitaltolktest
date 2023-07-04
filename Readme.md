@@ -30,3 +30,12 @@ For methods where there are multiple tables being manipulated, these changes sho
 ## Injecting the dependencies
 First of all, this class should not be responsible for sending sms and push notifications, but given that it does, that logic should be encapsulated in it's own class, and that class should be injected into this as a dependency, and it should be injected as an interface so it could easily be swapped out by a different implementation.
 
+## acceptJob and acceptJobWithId
+These two methods are very confusing. This is a code smell that is indicating to me, that these are two methods that do the same thing but take different arguments, but looking at the code, there is siginificant difference between the two, but the names don't suggest that, which can be very problematic for a new comer.
+
+## ajax method in repository
+The method called `cancelJobAjax`. The repository class has no business knowing whether the request is coming from ajax or normally, and if the behaviour is supposed to be different, then it should be handled at the controller level. 
+
+### Note
+There is obviously a lot wrong with this. But to refactor all of it would take a very long time so I wouldn't dive into this. I have made some refactors to the accept job method in the controller and in the repository, and refactored some methods out to a separate controller. 
+I have added test cases for the TeHelper class, and the `createOrUpdate` method in UserRepository is very problematic and to write a test for it, would require a refactor that will take a long time, So I am going to skip it as it is optional.

@@ -101,72 +101,7 @@ class BookingController extends Controller
         return response($response);
     }
 
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function getHistory(Request $request)
-    {
-        if($user_id = $request->get('user_id')) {
-
-            $response = $this->repository->getUsersJobsHistory($user_id, $request);
-            return response($response);
-        }
-
-        return null;
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function acceptJob(Request $request)
-    {
-        $data = $request->all();
-        $user = $request->__authenticatedUser;
-
-        $response = $this->repository->acceptJob($data, $user);
-
-        return response($response);
-    }
-
-    public function acceptJobWithId(Request $request)
-    {
-        $data = $request->get('job_id');
-        $user = $request->__authenticatedUser;
-
-        $response = $this->repository->acceptJobWithId($data, $user);
-
-        return response($response);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function cancelJob(Request $request)
-    {
-        $data = $request->all();
-        $user = $request->__authenticatedUser;
-
-        $response = $this->repository->cancelJobAjax($data, $user);
-
-        return response($response);
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function endJob(Request $request)
-    {
-        $data = $request->all();
-
-        $response = $this->repository->endJob($data);
-
-        return response($response);
-
-    }
+    
 
     public function customerNotCall(Request $request)
     {
